@@ -1,4 +1,5 @@
 #Created by Daxicek
+#Version 1.1
 from math import *
 from random import *
 from time import *
@@ -51,6 +52,21 @@ def triangle_area(a, b, c):
         return sqrt(s * (s-a) * (s-b) * (s-c))
     except:
         return "ERROR: Invalid values!"
+
+#TEST
+def math_test():
+    print(f"\n----------------\n\nPI: {PI} \nE: {E} \nTAU: {TAU} \n\n----------------\n")
+
+    print(f"CIRCLE area: {circle_area(int(input('RADIUS (area): ')))}\n")
+    print(f"CIRCLE circumference: {circle_circumference(int(input('RADIUS (circumference): ')))}\n\n----------------\n")
+
+    print(f"TRIANGLE hypotenuse: {triangle_hypotenuse(int(input('PENDANT1 (triangle hypotenuse): ')), int(input('PENDANT2 (triangle hypotenuse): ')))}\n")
+    print(f"TRIANGLE pendant: {triangle_pendant(int(input('HYPOTENUSE (triangle pendant): ')), int(input('PENDANT (triangle pendant): ')))}\n")
+    print(f"TRIANGLE area: {triangle_area(int(input('A (triangle area): ')), int(input('B (triangle area): ')), int(input('C (triangle area): ')))}\n\n----------------\n")
+
+    print(f"FACTORIAL: {factorial(int(input('FACTORIAL: ')))}\n\n----------------\n")
+
+    print(f"PRIME: {is_prime(int(input('PRIME: ')))}\n")
 
 #----COLORS----
 WHITE = 255, 255, 255
@@ -147,6 +163,23 @@ class sw_class():
         self.stop_time = 0
 stopwatch = sw_class()
 
+#STOPWATCH TEST
+def stopwatch_test():
+    print("Start")
+    stopwatch.start()
+    input("\nPress enter to stop the stopwatch...\n")
+    stopwatch.stop()
+    print(f"Value: {stopwatch.time()}")
+    stopwatch.reset()
+    print(f"Reset: {stopwatch.time()}")
+
 #TICK RATE
 def tps(tick_rate):
     sleep(1/tick_rate)
+
+#TICK RATE TEST
+def tps_test():
+    tps_value = int(input("TPS: "))
+    while True:
+        tps(tps_value)
+        print("Tick")
