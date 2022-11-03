@@ -3,27 +3,28 @@
 from math import *
 from random import *
 from time import *
+from keyboard import *
 
-#----MATH----
+#----MATH---- (01xxxx)
 PI = 3.14159265358979
 TAU = PI * 2
 E = 2.71828182846
 
-#CIRCLE
+#CIRCLE (0101xx)
 def circle_circumference(radius):
     return radius * 2 * PI
 
 def circle_area(radius):
     return radius * radius * PI
 
-#FACTORIAL
+#FACTORIAL (0102xx)
 def factorial(factorial):
     answer = factorial
     for i in range(1, factorial):
         answer = answer * i
     return answer
 
-#PRIME
+#PRIME (0103xx)
 def is_prime(number):
     if number > 1:
         for num in range(2, number):
@@ -32,28 +33,28 @@ def is_prime(number):
         return True
     return False
 
-#TRIANGLE
-def triangle_hypotenuse(pendant1, pendant2):
+#TRIANGLE (0104xx)
+def triangle_hypotenuse(pendant1, pendant2): #(010401)
     try:
         return sqrt(pendant1 * pendant1 + pendant2 * pendant2)
     except:
-        return "ERROR: Invavalid values!"
+        print("ERROR: Invavalid values!")
 
 
-def triangle_pendant(hypotenuse, pendant):
+def triangle_pendant(hypotenuse, pendant): #(010402)
     try:
         return sqrt(hypotenuse * hypotenuse - pendant * pendant)
     except:
-        return "ERROR: Invavalid values!"
+        print("ERROR: Invavalid values!")
 
-def triangle_area(a, b, c):
+def triangle_area(a, b, c): #(O1O403)
     try:
         s = (a + b + c) / 2
         return sqrt(s * (s-a) * (s-b) * (s-c))
     except:
-        return "ERROR: Invalid values!"
+        print("ERROR: Invalid values!")
 
-#TEST
+#TEST (0105xx)
 def math_test():
     print(f"\n----------------\n\nPI: {PI} \nE: {E} \nTAU: {TAU} \n\n----------------\n")
 
@@ -96,8 +97,8 @@ cz_alphabet_capital = "AÁBCČDĎEÉĚFGHCHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZ�
 numbers = "0123456789"
 sp_chars = "-_,.;:*+-/\|#&!?=<>()[]%"
 
-#----RANDOM----
-#RANDOM FLOAT
+#----RANDOM---- (02xxxx)
+#RANDOM FLOAT (0201xx)
 def randfloat(n_from, n_to, max_length):
     length = 1
     for i in range(max_length):
@@ -108,16 +109,14 @@ def randfloat(n_from, n_to, max_length):
 
     return randint(n_from, n_to) / length
 
-#RANDOM BOOL
+#RANDOM BOOL (0202xx)
 def randbool():
-    a = randint(1, 2)
-
-    if a == 1:
+    if randint(1, 2) == 1:
         return True
     else:
         return False
 
-#RANDOM STRING
+#RANDOM STRING (0203xx)
 def randstr(length, add_capitals, add_numbers, add_spaces, add_special_chars):
     string = str("")
     for i in range(length):
@@ -142,12 +141,12 @@ def randstr(length, add_capitals, add_numbers, add_spaces, add_special_chars):
                 break
     return string
 
-#RANDOM COLOR
+#RANDOM COLOR (0204xx)
 def randcolor():
     return randint(0, 255), randint(0, 255), randint(0, 255)
         
-#----TIME----
-#STOPWATCH
+#----TIME---- (03xxxx)
+#STOPWATCH (0301xx)
 class sw_class():
     def __init__(self):
         self.start_time = 0
@@ -163,7 +162,7 @@ class sw_class():
         self.stop_time = 0
 stopwatch = sw_class()
 
-#STOPWATCH TEST
+#STOPWATCH TEST (0302xx)
 def stopwatch_test():
     print("Start")
     stopwatch.start()
@@ -173,13 +172,56 @@ def stopwatch_test():
     stopwatch.reset()
     print(f"Reset: {stopwatch.time()}")
 
-#TICK RATE
+#TICK RATE (0302xx)
 def tps(tick_rate):
     sleep(1/tick_rate)
 
-#TICK RATE TEST
+#TICK RATE TEST (0303xx)
 def tps_test():
     tps_value = int(input("TPS: "))
     while True:
         tps(tps_value)
         print("Tick")
+
+#----PYGAME---- (04xxxx)
+#PYGAME IMPORT (0401xx)
+enable_pygame = False
+if enable_pygame: #(040101)
+    try:
+        import pygame
+        window = pygame.display.set_mode(700, 500)
+    except:
+        print("ERROR: Pygame isn't avalible!")
+
+#SPRITE CLASS (0402xx)
+class sprite():
+    def __init__(self, image_name, scale, x, y):
+        self = pygame.transform.scale(pygame.image.load(image_name), scale)
+        self.x = x
+        self.y = y
+    def draw(self):
+        window.blit(self, (self.x, self.y))
+
+
+#BACKGROUND CLASS (0403xx)
+class sprite():
+    def __init__(self, image_name):
+        self.image_name = image_name
+        self = pygame.image.load(self.image_name)
+        window.blit(self, (0, 0))
+
+#----KEYBOARD---- (05xxxx)
+#PRESS FOR TIME (0501xx)
+def press_for_time(key, seconds):
+    press(key)
+    sleep(seconds)
+    release(key)
+
+#PRESS TIMES (0502xx)
+def press_times(key, how_many, speed):
+    for i in range(how_many):
+        press_and_release(key)
+        sleep(speed)
+
+press_for_time("A", 2)
+press_for_time("B", 2)
