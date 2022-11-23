@@ -1,9 +1,11 @@
 #Created by Daxicek
-#Version 1.1
+#Version 1.3
 from math import *
 from random import *
 from time import *
 from keyboard import *
+from sys import *
+from os import *
 
 #----MATH---- (01xxxx)
 PI = 3.14159265358979
@@ -183,6 +185,10 @@ def tps_test():
         tps(tps_value)
         print("Tick")
 
+#WAIT (0304xx)
+def wait(seconds):
+    sleep(seconds)
+
 #----PYGAME---- (04xxxx)
 #PYGAME IMPORT (0401xx)
 enable_pygame = False
@@ -222,6 +228,3 @@ def press_times(key, how_many, speed):
     for i in range(how_many):
         press_and_release(key)
         sleep(speed)
-
-press_for_time("A", 2)
-press_for_time("B", 2)
